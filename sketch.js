@@ -5,25 +5,28 @@
 
 let xpos, ypos
 let xpos2, ypos2
+let xpos3, ypos3
 
-let rad = 30
 let c = 0
 let z = 0
-let r = 30 
-let change = 0
 
 let xspeed = 2
 let yspeed = 4
 let xspeed2 = 4
 let yspeed2 = 2
+let xspeed3 = 3
+let yspeed3 = 3
 
 let xdirection = 1
 let ydirection = 1
 let xdirection2 = -1
 let ydirection2 = -1 
+let xdirection3 = -1
+let ydirection3 = -1 
 
 let history = []
 let history2 = []
+let history3 = []
 
 let colors = []
 let colors2 = []
@@ -31,22 +34,19 @@ let colors3 = []
 
 let randspot
 let randspot2
-
-let xoff = 0
-
-// class history {
-
-// }
+let randspot3
 
 function mouseClicked() {
     c += 1
-    if (c > 2)
+    if (c > 3)
         c = 0
 
     // history.splice(0, history.length)
     // history2.splice(0, history2.length)
     randspot = round(random(0, 800))
     randspot2 = round(random(0, 800))
+    randspot3 = round(random(0, 800))
+
 }
 
 function setup() {
@@ -88,10 +88,14 @@ function setup() {
 
     randspot = round(random(0, 800))
     randspot2 = round(random(0, 800))
+    randspot3 = round(random(0, 800))
+
     xpos = randspot
     ypos = randspot
     xpos2 = randspot2
     ypos2 = randspot2
+    xpos3 = randspot3
+    ypos3 = randspot3
 }
 
 function draw() {
@@ -106,15 +110,25 @@ function draw() {
     xpos2 = xpos2 + xspeed2 * xdirection2;
     ypos2 = ypos2 + yspd * ydirection2;
 
-    if (xpos > width - rad || xpos < rad) 
+    xpos3 = xpos3 + xspeed3 * xdirection3;
+    ypos3 = ypos3 + yspd * ydirection3;
+
+
+    if (xpos > width || xpos < 0) 
         xdirection *= -1
-    if (ypos > height - rad || ypos < rad) 
+    if (ypos > height|| ypos < 0) 
         ydirection *= -1
     
-    if (xpos2 > width - rad || xpos2 < rad) 
+    if (xpos2 > width || xpos2 < 0) 
         xdirection2 *= -1
-    if (ypos2 > height - rad || ypos2 < rad) 
+    if (ypos2 > height || ypos2 < 0) 
         ydirection2 *= -1
+
+            
+    if (xpos3 > width || xpos3 < 0) 
+    xdirection3 *= -1
+    if (ypos3 > height || ypos3 < 0) 
+    ydirection3 *= -1
 
     let v = createVector(xpos, ypos)
     history.push(v)
@@ -122,11 +136,17 @@ function draw() {
     let v2 = createVector(xpos2, ypos2)
     history2.push(v2)
 
+    let v3 = createVector(xpos3, ypos3)
+    history3.push(v3)
+
     if (history.length > 2000)
         history.splice(0, history.length)
 
     if (history2.length > 2000)
         history2.splice(0, history2.length)
+
+    if (history2.length > 2000)
+        history2.splice(0, history3.length)
 
     for (let i = 0; i < history.length; i++) {
             let z = i
@@ -136,14 +156,29 @@ function draw() {
             if (c == 0) {
                 stroke(colors[round(z)])
                 line(history[i].x, history[i].y, history2[i].x, history2[i].y)
+                line(history2[i].x, history2[i].y, history3[i].x, history3[i].y)
+                line(history3[i].x, history3[i].y, history[i].x, history[i].y)
+
             }
             else if (c == 1) {
                 stroke(colors2[round(z)])
                 line(history[i].x, history[i].y, history2[i].x, history2[i].y)
+                line(history2[i].x, history2[i].y, history3[i].x, history3[i].y)
+                line(history3[i].x, history3[i].y, history[i].x, history[i].y)
             }            
             else if (c == 2) {
                 stroke(colors3[round(z)])
                 line(history[i].x, history[i].y, history2[i].x, history2[i].y)
+                line(history2[i].x, history2[i].y, history3[i].x, history3[i].y)
+                line(history3[i].x, history3[i].y, history[i].x, history[i].y)
+            }   
+            else if (c == 3) {               
+                stroke(colors[round(z)])
+                line(history[i].x, history[i].y, history2[i].x, history2[i].y)
+                stroke(colors2[round(z)])
+                line(history2[i].x, history2[i].y, history3[i].x, history3[i].y)
+                stroke(colors3[round(z)])
+                line(history3[i].x, history3[i].y, history[i].x, history[i].y)
             }   
     }
 }
