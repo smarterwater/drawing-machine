@@ -83,7 +83,10 @@ function setup() {
     colors3.push(color("#35869A"))
     colors3.push(color("#237B90"))
 
-    createCanvas(800, 800)
+    if (windowWidth > 800)
+        createCanvas(800, 800)
+    else
+        createCanvas(windowWidth, windowHeight)
     frameRate(60);
 
     randspot = round(random(0, 800))
