@@ -34,6 +34,10 @@ let randspot2
 
 let xoff = 0
 
+// class history {
+
+// }
+
 function mouseClicked() {
     c += 1
     if (c > 2)
@@ -93,11 +97,11 @@ function setup() {
 function draw() {
     background("#c1dee7")
 
-    let xwidth = map(mouseX, 0, 800, 0, 2)
-    let yspd = map(mouseY, 0, 800, 0, 20)
+    let xwidth = map(mouseX, 0, 800, 0, 1.75)
+    let yspd = map(mouseY, 0, 800, 0, 5)
 
     xpos = xpos + xspeed * xdirection;
-    ypos = ypos + yspd * ydirection;
+    ypos = ypos - yspd * ydirection;
 
     xpos2 = xpos2 + xspeed2 * xdirection2;
     ypos2 = ypos2 + yspd * ydirection2;
