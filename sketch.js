@@ -7,6 +7,7 @@ let xpos, ypos
 let xpos2, ypos2
 let xpos3, ypos3
 
+let canvas
 let c = 0
 let z = 0
 
@@ -36,16 +37,23 @@ let randspot
 let randspot2
 let randspot3
 
+let img = 1
+
 function mouseClicked() {
     c += 1
     if (c > 3)
         c = 0
 
-    // history.splice(0, history.length)
-    // history2.splice(0, history2.length)
+    history.splice(0, history.length)
+    history2.splice(0, history2.length)
     randspot = round(random(0, 800))
     randspot2 = round(random(0, 800))
     randspot3 = round(random(0, 800))
+    saveCanvas(canvas, "image" + img, "jpg")
+    img++
+}
+
+function mousePressed() {
 
 }
 
@@ -83,10 +91,11 @@ function setup() {
     colors3.push(color("#35869A"))
     colors3.push(color("#237B90"))
 
+
     if (windowWidth > 800)
-        createCanvas(800, 800)
+        canvas = createCanvas(800, 800)
     else
-        createCanvas(windowWidth, windowHeight)
+        canvas = createCanvas(windowWidth, windowHeight)
     frameRate(60);
 
     randspot = round(random(0, 800))
