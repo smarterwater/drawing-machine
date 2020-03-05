@@ -37,8 +37,6 @@ let randspot
 let randspot2
 let randspot3
 
-let img = 1
-
 function mouseClicked() {
     c += 1
     if (c > 3)
@@ -49,12 +47,6 @@ function mouseClicked() {
     randspot = round(random(0, 800))
     randspot2 = round(random(0, 800))
     randspot3 = round(random(0, 800))
-    saveCanvas(canvas, "image" + img, "jpg")
-    img++
-}
-
-function mousePressed() {
-
 }
 
 function setup() {
